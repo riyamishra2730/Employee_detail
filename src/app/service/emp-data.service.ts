@@ -13,6 +13,7 @@ export class EmpDataService {
   public teamUrl = "http://10.1.113.124:82/api/Team";
   public taskUrl = "http://10.1.113.124:82/api/Task";
   public environmentUrl = "http://10.1.113.124:82/api/Environment";
+  public labenvurl = "http://10.1.113.124:82/api/Environment/QALab1"
 
   constructor(private http: HttpClient) { }
 
