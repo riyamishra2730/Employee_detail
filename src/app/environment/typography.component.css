@@ -1,9 +1,38 @@
-.input{
-    border-radius: 13px;
-    width: 250px;
-    border-color: green;
+
+
+.ngx-org-name {
+
+    text-align: center;
 }
-.ngx-org-self-vertical[_ngcontent-dvw-c30] {
-    /* margin-bottom: 2%; */
-    margin-top: 2%;
+
+.ngx-org-title {
+
+    width: 200px;
+}
+
+.solid-name {
+
+    color: blue;
+}
+
+.solid-name .container {
+
+    margin: 8px;
+
+}
+
+.solid-name .left {
+
+    color: brown;
+
+    font-weight: 600;
+
+}
+
+.solid-name .right {
+
+    float: right;
+
+    color: black;
+
 }

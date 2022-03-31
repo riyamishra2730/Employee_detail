@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./typography.component.css']
 })
 export class typographyComponent implements OnInit {
+  count=0;
 
   constructor(private empData: EmpDataService, private router: Router) { }
 
@@ -18,6 +19,10 @@ export class typographyComponent implements OnInit {
       next:nodes=>{
         this.nodes=nodes;
       //   console.warn(this.nodes);
+      this.setClassToNode(this.nodes);
+      setTimeout(() => {
+        this.createElements(this.nodes);
+      }, 200);
       }
     })
   }
@@ -93,5 +98,51 @@ export class typographyComponent implements OnInit {
     this.router.navigateByUrl('/listEnvironment');
     this.empData.setSelectedEnvironment($event);
     // console.log($event.name)
+  }
+  setClassToNode(mainNode: any) {
+
+    mainNode.forEach((node: any) => {
+
+      node.cssClass = 'solid-name';
+
+      this.setClassToNode(node.childs);
+
+    });
+  
+  }
+  createElements(mainNode: any) {
+    
+    mainNode.forEach((node: any) => {
+      node.cssClass = 'solid-name';
+
+      if (document.getElementsByClassName('solid-name')) {
+
+        let ele: any = document.getElementsByClassName('solid-name')[this.count++];
+        ele = ele.firstElementChild;
+        let target: Element = ele.getElementsByClassName('ngx-org-title')[0];
+    
+        let fields = ['Admin','IIS', 'Singleton','Version' ];
+
+        fields.forEach((field: any) => {
+
+          let div = document.createElement('div');
+          div.classList.add('container');
+          
+          let nameLabel = document.createElement('label');
+          nameLabel.innerHTML = field;
+          nameLabel.classList.add('left');
+          div.appendChild(nameLabel);
+
+          let valueLabel = document.createElement('label');
+          valueLabel.innerHTML = node[field];
+          valueLabel.classList.add('right');
+          div.appendChild(valueLabel);
+
+          target.appendChild(div);
+        });
+        
+        this.createElements(node.childs);
+      }
+    });
   }
 }
