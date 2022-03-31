@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { employeeData } from 'app/dashboard/employee';
 import { Observable } from 'rxjs';
 import { taskData } from 'app/table-list/task';
+import { LabData } from 'app/list-environment/Lab';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,6 @@ export class EmpDataService {
   public teamUrl = "http://10.1.113.124:82/api/Team";
   public taskUrl = "http://10.1.113.124:82/api/Task";
   public environmentUrl = "http://10.1.113.124:82/api/Environment";
-  public labenvurl = "http://10.1.113.124:82/api/Environment/QALab1"
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +27,13 @@ export class EmpDataService {
   employeeDelete(name: string) {
     return this.http.delete(this.teamUrl);
   }
+  
+  //Environment
 
+  Labenvironment(name: string){ 
+    let url = this.environmentUrl + `/${name}`;
+    return this.http.get<LabData[]>(url);
+  }
   //Task Services............
   task(): Observable<taskData[]> {
     return this.http.get<taskData[]>(this.taskUrl);

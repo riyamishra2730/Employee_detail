@@ -44,11 +44,18 @@ export class ListEnvironmentComponent implements OnInit {
   selectedItem: any;
   ngOnInit(): void {
     this.environmentsCopy = [...this.environments];
+    let env = this.resultArray.name.split('(')[0];
+    this.empData.Labenvironment(env).subscribe((data: any)=> {
+      console.log(data)
+    })
   }
-  filter() {
+  
+  
+  filter(){
     this.environments = this.environmentsCopy;
     let environmentsNew = this.environments.filter((target: any) => {
       return target.Name.toLowerCase().includes(this.searchText.toLowerCase())
+      console.log("File is working");
     });
     this.environments = environmentsNew;
   }
