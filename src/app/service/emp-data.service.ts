@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { employeeData } from 'app/dashboard/employee';
 import { Observable } from 'rxjs';
 import { taskData } from 'app/table-list/task';
+import { LabData } from 'app/list-environment/Lab';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,13 @@ export class EmpDataService {
   employeeUpdate(data:any){
     return this.http.put(this.teamUrl,data)
   }
+  
+  //Environment
 
+  Labenvironment(name: string){ 
+    let url = this.environmentUrl + `/${name}`;
+    return this.http.get<LabData[]>(url);
+  }
   //Task Services............
   task(): Observable<taskData[]> {
     return this.http.get<taskData[]>(this.taskUrl);

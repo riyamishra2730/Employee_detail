@@ -33,6 +33,10 @@ export class ListEnvironmentComponent implements OnInit {
     console.warn(this.value);
     // console.warn(this.environments[0].labData);
     this.environmentsCopy = [...this.environments];
+    let env = this.resultArray.name.split('(')[0];
+    this.empData.Labenvironment(env).subscribe((data: any)=> {
+      console.log(data)
+    })
   }
 
   // initialShowEnv(){

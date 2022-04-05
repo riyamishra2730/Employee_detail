@@ -15,6 +15,7 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
 export class TableListComponent implements OnInit {
 
   tasks: taskData[] = [];
+  count = 0;
   constructor(private empData: EmpDataService, private matDialog: MatDialog) {
     // empData.employee().subscribe((data)=>{
     //   this.employees=data;
@@ -67,8 +68,11 @@ export class TableListComponent implements OnInit {
       next: tasks => {
         this.tasks = tasks;
         this.filterTask = [...this.tasks];
+        //this.setClassToNode(this.tasks);
+       // this.createElements(this.tasks);
       }
     })
+    
   }
   // deleteTask(id: number) {
   //   this.empData.taskDelete(id).subscribe(res => {
