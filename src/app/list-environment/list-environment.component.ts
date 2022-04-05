@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EmpDataService } from 'app/service/emp-data.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { TransitionCheckState } from '@angular/material/checkbox';
+import{Location}from '@angular/common';
 
 @Component({
   selector: 'app-list-environment',
@@ -10,9 +11,11 @@ import { TransitionCheckState } from '@angular/material/checkbox';
   styleUrls: ['./list-environment.component.css']
 })
 export class ListEnvironmentComponent implements OnInit {
-
+  public envname:string = '';
   
-  constructor(private empData: EmpDataService, private router: Router) {}
+  constructor(private empData: EmpDataService, private router: Router, private _location: Location) {
+    this.envname=this.router.getCurrentNavigation().extras.state.envName;
+  }
   
   environmentsCopy: any;
   searchText: string = '';
@@ -62,7 +65,16 @@ export class ListEnvironmentComponent implements OnInit {
     });
     this.environments = environmentsNew;
     }
+    backClicked() {
+      this._location.back();
+    }
 
+    //Back Button
+    onEnvClick() {
+      debugger;
+      this.router.navigateByUrl('/typography');
+      this.backClicked();
+    }
   onMenuSelected(event: any) {
     this.selectedItem = this.environmentsCopy.find((target: any) => {
       return target.labData.toLowerCase().includes(event.value.toLowerCase())
@@ -73,3 +85,4 @@ export class ListEnvironmentComponent implements OnInit {
     })
   }
 }
+

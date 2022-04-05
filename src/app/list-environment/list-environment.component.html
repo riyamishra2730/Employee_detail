@@ -1,11 +1,12 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <button type="button" id="button" class="btn btn-success"  (onClick)="onEnvClick()">  Back  </button>
             <!-- Team list........ -->
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-success">
-                        <h4 class="card-title">Configuration</h4>
+                        <h4 class="card-title">Configuration of  {{envname}}</h4>
                     </div>
                     <div class="card-body table-responsive">
                         <div class="row" *ngIf="value">
@@ -24,6 +25,7 @@
                                 <th>Environment</th>
                                 <th>Keys</th>
                                 <th>Values</th>
+                                <th>Edit</th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let data of labData">
@@ -40,10 +42,7 @@
                             </tbody>
                         </table>
                         <div class="row">
-                            <!-- <button type="button" id="button" class="btn btn-primary btn-sm"
-                            (click)="toggleEmployee()">{{showListEmployee ? 'Hide ': 'See '}}
-                                More
-                        </button> -->
+                            
                         </div>
                     </div>
                 </div>

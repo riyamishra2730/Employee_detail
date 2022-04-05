@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EmpDataService } from 'app/service/emp-data.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-environment',
@@ -8,9 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./typography.component.css']
 })
 export class typographyComponent implements OnInit {
+  
 
   constructor(private empData: EmpDataService, private router: Router) { }
-
+  
+  
   nodes:any[];
   count=0;
 
@@ -79,9 +82,9 @@ export class typographyComponent implements OnInit {
       this.empData.setSelectedEnvironment(res);
       this.empData.setValue();
     })
-    this.router.navigateByUrl('/listEnvironment');
+    this.router.navigateByUrl('/listEnvironment',{ state: { envName: $event.name } });
     // let passData;
     
-    // console.log($event.name)
+    //console.log($event.name)
   }
 }
